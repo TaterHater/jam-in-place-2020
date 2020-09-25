@@ -23,7 +23,7 @@ public abstract class StatusEffect
     public virtual int OnGrowthModified(CropField field, StatusEffect modifier, int amount) { return amount; }
 
     //When you add a new crop
-    public virtual void OnNewCrop(CropField field, CropCard crop) { }
+    public virtual void OnNewCrop(CropField field, Crop crop) { }
 
 
 
