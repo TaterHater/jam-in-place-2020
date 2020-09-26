@@ -5,33 +5,31 @@ using UnityEngine;
 
 public class CropField : MonoBehaviour
 {
-    CropCard crop=null;
-    int growth = 1;
+    Crop crop=null;
     int yieldModifier = 0;
     List<StatusEffect> statusEffects = new List<StatusEffect>();
-
     internal void ClearCrop()
     {
         statusEffects.Clear();
-        AddStatusEffect(crop.HarvestedSoil());
+        crop.OnHarvest(this);
         crop = null;
 
     }
 
-    public void SetCrop(CropCard crop) {
+    public void SetCrop(Crop crop) {
         //You can't plant a new crop if you already have a crop do you?
-        if (this.crop != null) { 
+        if (this.crop == null) { 
             this.crop = crop;
-            growth = crop.GrowthTime;
             yieldModifier = 0;
             foreach (var effect in statusEffects)
             {
                 effect.OnNewCrop(this, crop);
             }
-        }
+        } 
     }
 
-    int GetYield() { 
+    int GetYield() {
+        if (crop.state == Crop.State.Dead) return 0;
         //combining the crop's yield with it's modifier, with a minimum of 0 to prevent getting negative yield.
         //Optionally change 0 to 1 to make sure you get at least 1 yield every time.
         return System.Math.Max(crop.Yield+yieldModifier,0);
@@ -55,13 +53,12 @@ public class CropField : MonoBehaviour
         {
             finalResult = effect.OnGrowthModified(this, modifier, finalResult);
         }
-        this.growth += finalResult;
-        this.growth = System.Math.Max(0, this.growth);//You can't harvest a crop from the past, a growth cannot be negative.
+        crop.AddAge(finalResult);
     }
 
 
-    public int EndTurn() {
-        if (crop == null) return 0;
+    public void EndDay() {
+        if (crop == null) return;
         //Executing end of turn effects
         foreach (var effect in statusEffects)
         {
@@ -69,16 +66,7 @@ public class CropField : MonoBehaviour
             effect.OnEndTurn(this);
         }
         statusEffects.RemoveAll(effect => effect.Turns <= 0);// removing any effects that shouldn't be active anymore.
-
-
-        //Growing the crop and "harvesting" if it's ready
-        growth--;
-        if (growth <= 0) {
-            int finalYield = GetYield();
-            ClearCrop(); 
-            return finalYield*crop.YieldValue;
-        }
-        return 0;
+        crop.EndDay();
     }
 
     public void AddStatusEffect(StatusEffect statusEffect) {
@@ -86,8 +74,28 @@ public class CropField : MonoBehaviour
         statusEffect.OnApply(this);
     }
 
+    public int Harvest() {
+        if (crop != null && crop.Harvestable()) {
+            int yield = GetYield();
+            ClearCrop();
+            return yield;
+        }
+        return 0;
+    } 
+    
+    public bool Harvestable() {
+        return (crop != null && crop.Harvestable());
+    }
+
+    public void Water() {
+        if (crop != null) crop.Water();
+    }
 
 
+    public override string ToString()
+    {
+        return crop.state.ToString()+ " " + crop.Age+ " ";
+    }
 
 
 }
