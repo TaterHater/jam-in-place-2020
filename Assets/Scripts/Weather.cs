@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weather : MonoBehaviour
+public class Weather
 {
-    Season season = Season.Spring;
+    public Season season = Season.Spring;
     int day = 1;
+    private float fChanceOfDifferentWeather = 0.2f;
     [SerializeField]
     int DaysPerSeason = 4;
     StatusEffect justAnotherDay = new JustAnotherDay();
@@ -16,7 +17,6 @@ public class Weather : MonoBehaviour
         new StatusEffect[]{new Rain()} , //Autumn weather
         new StatusEffect[]{new Blizzard()}   //Winter weather
     };
-    private float fChanceOfDifferentWeather=0.2f;
 
     public StatusEffect NextDay() {
         if (day >= DaysPerSeason)
@@ -41,7 +41,7 @@ public class Weather : MonoBehaviour
 
 
 
-    enum Season {
+    public enum Season {
     Spring=0, Summer=1, Autumn=2, Winter=3
     }
 }

@@ -11,8 +11,6 @@ public  class Crop
     [SerializeField]
     int seedGrowthTime = 1;
     [SerializeField]
-    int seedlingGrowthTime = 1;
-    [SerializeField]
     int prematureGrowthTime = 1;
 
     internal void OnHarvest(CropField cropField)
@@ -35,11 +33,11 @@ public  class Crop
     }
     public enum State
     {
-        Seed,
-        Seedling,
-        Premature,
-        Mature,
-        Dead
+        Seed = 0,
+        Premature=1,
+        Mature=2,
+        Dead=3,
+        Empty=4
     }
 
     internal void AddAge(int finalResult)
@@ -54,7 +52,7 @@ public  class Crop
         daysWithoutWater++;
     }
 
-    internal bool Harvestable() {
+    internal bool IsHarvestable() {
         return (state == State.Mature || state == State.Dead);
     }
 
@@ -65,9 +63,7 @@ public  class Crop
         set { 
             age = value;
             int nextAge = seedGrowthTime;
-            if (age >= nextAge && state == State.Seed) { state = State.Seedling; }
-            nextAge += seedlingGrowthTime;
-             if (age >= nextAge && state == State.Seedling) { state = State.Premature; }
+            if (age >= nextAge && state == State.Seed) { state = State.Premature; }
             nextAge += prematureGrowthTime;
              if (age >= nextAge && state == State.Premature) { state = State.Mature; }
         }

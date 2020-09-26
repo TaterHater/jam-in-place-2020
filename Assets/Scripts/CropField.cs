@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CropField : MonoBehaviour
+public class CropField : InteractableObject
 {
+    
     Crop crop=null;
     int yieldModifier = 0;
     List<StatusEffect> statusEffects = new List<StatusEffect>();
@@ -14,6 +15,10 @@ public class CropField : MonoBehaviour
         crop.OnHarvest(this);
         crop = null;
 
+    }
+    void Start()
+    {
+        EventManager.StartListening("new-day", EndDay);
     }
 
     public void SetCrop(Crop crop) {
@@ -26,6 +31,12 @@ public class CropField : MonoBehaviour
                 effect.OnNewCrop(this, crop);
             }
         } 
+    }
+
+    internal Crop.State GetState()
+    {
+        if (crop == null) return Crop.State.Empty;
+        return crop.state;
     }
 
     int GetYield() {
@@ -75,7 +86,7 @@ public class CropField : MonoBehaviour
     }
 
     public int Harvest() {
-        if (crop != null && crop.Harvestable()) {
+        if (crop != null && crop.IsHarvestable()) {
             int yield = GetYield();
             ClearCrop();
             return yield;
@@ -83,12 +94,13 @@ public class CropField : MonoBehaviour
         return 0;
     } 
     
-    public bool Harvestable() {
-        return (crop != null && crop.Harvestable());
+    public bool IsHarvestable() {
+        return (crop != null && crop.IsHarvestable());
     }
 
     public void Water() {
         if (crop != null) crop.Water();
+
     }
 
 
@@ -98,4 +110,24 @@ public class CropField : MonoBehaviour
     }
 
 
+   
+
+    public override void Interact(PlayerScript ps)
+    {
+        if (ps.inventory.GetActiveItem().GetItemType() == BaseItem.ItemType.Seeds && crop == null)
+        {
+            ps.playerStates.StartPlanting();
+            crop = (Crop)ps.inventory.UseActiveItem();
+        }
+        else if(crop!=null){
+            if (crop.IsHarvestable()) {
+                ps.playerStates.StartHarvesting();
+                ps.inventory.Yield +=Harvest();
+            }
+            if (ps.inventory.GetActiveItem().GetItemType() == BaseItem.ItemType.WaterThingy) {
+                ps.playerStates.StartWatering();
+                Water();
+            }
+        }
+    }
 }
