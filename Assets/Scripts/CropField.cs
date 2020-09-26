@@ -114,19 +114,22 @@ public class CropField : InteractableObject
 
     public override void Interact(PlayerScript ps)
     {
-        if (ps.inventory.GetActiveItem().GetItemType() == BaseItem.ItemType.Seeds && crop == null)
+        if (ps.inventory.Have(Inventory.ItemType.Seeds) && crop == null)
         {
             ps.playerStates.StartPlanting();
-            crop = (Crop)ps.inventory.UseActiveItem();
+            crop = new Crop();
+            ps.inventory.Use(Inventory.ItemType.Seeds);
         }
         else if(crop!=null){
             if (crop.IsHarvestable()) {
                 ps.playerStates.StartHarvesting();
                 ps.inventory.Yield +=Harvest();
             }
-            if (ps.inventory.GetActiveItem().GetItemType() == BaseItem.ItemType.WaterThingy) {
+            else if (ps.inventory.Have(Inventory.ItemType.WaterThingy)) {
                 ps.playerStates.StartWatering();
                 Water();
+                ps.inventory.Use(Inventory.ItemType.WaterThingy);
+
             }
         }
     }
