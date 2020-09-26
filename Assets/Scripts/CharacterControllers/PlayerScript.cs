@@ -11,24 +11,28 @@ public class PlayerScript : MonoBehaviour
     public CharacterControls pc;
     public targetmove target;
     public SteeringRig SteerSensor;
+    public Inventory inventory;
+    public PlayerState playerStates;
     void Update()
     {
 
-      
-        if (Vector3.Distance(transform.position, target.GetPosition()) > 0.1f)
+        if (playerStates.CanMove())
         {
-            var targetDirection = SteerSensor.GetSteeredDirection((target.GetPosition() - this.gameObject.transform.position).normalized);
-            this.GetComponent<Rigidbody>().isKinematic = false;
-            this.GetComponent<Rigidbody>().freezeRotation = false;
-            pc.Move = targetDirection;
-            pc.Face = pc.Move;
+            if (Vector3.Distance(transform.position, target.GetPosition()) > 0.1f)
+            {
+                var targetDirection = SteerSensor.GetSteeredDirection((target.GetPosition() - this.gameObject.transform.position).normalized);
+                this.GetComponent<Rigidbody>().isKinematic = false;
+                this.GetComponent<Rigidbody>().freezeRotation = false;
+                pc.Move = targetDirection;
+                pc.Face = pc.Move;
+            }
+            else
+            {
+                this.GetComponent<Rigidbody>().isKinematic = true;
+                this.GetComponent<Rigidbody>().freezeRotation = true;
+                target.Interact(this);
+            }
         }
-        else
-        {
-            this.GetComponent<Rigidbody>().isKinematic = true;
-             this.GetComponent<Rigidbody>().freezeRotation = true;
-        }
-
 
     }
 }
