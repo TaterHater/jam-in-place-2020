@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     public object Use(BaseItem item) {
         object useResult = item.Use();
         if(item.IsConsumable())
-            items.Remove(item);
+            items[items.IndexOf(item)] = filler;
         return useResult;
     }
     public object UseActiveItem()
