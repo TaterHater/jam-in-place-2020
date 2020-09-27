@@ -20,8 +20,10 @@ public class PlayerScript : MonoBehaviour
     public SteeringRig SteerSensor;
     public Inventory inventory;
     public PlayerState playerStates;
+    public List<GameObject> ignorableObsticles;
     void Update()
     {
+        SteerSensor.IgnoreList = ignorableObsticles;
 
         if (playerStates.CanMove())
         {
