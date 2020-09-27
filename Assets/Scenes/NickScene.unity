@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6410d1e6987378e4bb3318082587fdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsPerDay: 60
+  secondsPerDay: 50
   DayText: {fileID: 1421955371}
   SeasonText: {fileID: 508168138}
 --- !u!4 &216975670
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 3
-  timeToWater: 2
+  timeToWater: 0.5
   timeToPlant: 1
   timeToHarvest: 2
   timeToFish: 4
@@ -3600,9 +3600,9 @@ MonoBehaviour:
   message: {fileID: 1967301353}
   HeaderText: {fileID: 1796818225}
   messageText: Offer gift
-  fishDemanded: 4
+  fishDemanded: 6
   cropDemanded: 1000
-  bugsDemanded: 2
+  bugsDemanded: 0
   StartPos: {x: -21, y: -25, z: -37}
   EndPos: {x: -21, y: -10, z: -37}
   speed: 4

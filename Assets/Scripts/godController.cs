@@ -30,7 +30,7 @@ public class godController : InteractableObject
         inventory = new int[3];
          this.gameObject.SetActive(false);
          HeaderText.text = "Gather "+cropDemanded+" crops, "+
-         fishDemanded +" fish, "+ bugsDemanded +" butterflies";
+         fishDemanded +" fish";
     }
 
     void Activate()
