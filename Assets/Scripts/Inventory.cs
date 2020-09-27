@@ -2,72 +2,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    private static BaseItem filler = new EmptyItem();
+    //private static BaseItem filler = new EmptyItem();
 
-    int yield = 0;
+    int yield =0;
     [SerializeField]
-    int capacity = 9;
-    [SerializeField]
-    GameObject yieldText = null;
-    public List<BaseItem> items;
-    private int activeItemIndex = 0;
-    public Text SeedAmountText;
+    GameObject yieldText=null;
+    public Dictionary<ItemType, int> items = new Dictionary<ItemType, int>();
 
-    public int Yield { get => yield; set { yield = value; if (yieldText != null) yieldText.GetComponent<UnityEngine.UI.Text>().text = value.ToString(); } }
+
+    public int Yield { get => yield; set { yield = value; if(yieldText!=null) yieldText.GetComponent<UnityEngine.UI.Text>().text = value.ToString(); } }
 
     void Start()
     {
-        items = new List<BaseItem>(capacity);
-        for (int i = 0; i < capacity; i++)
-        {
-            items.Add(new Seeds());
-        }
-        UpdateSeedDisplay();
-    }
-    void UpdateSeedDisplay()
-    {
-        SeedAmountText.text = items.Count.ToString();
+        items.Add(ItemType.Seeds,1);
+        items.Add(ItemType.WaterThingy, 0);
+        items.Add(ItemType.Fish, 0);
+        items.Add(ItemType.Butterfly, 0);
+        
     }
 
-    public object Use(BaseItem item)
-    {
-        object useResult = item.Use();
-        if (item.IsConsumable())
-            items[items.IndexOf(item)] = filler;
-        return useResult;
+ 
+    public void Use(ItemType item) {
+        items[item] = Math.Max(items[item] - 1, 0);
     }
-    public object UseActiveItem()
+    public void GainItem(ItemType item)
     {
-        UpdateSeedDisplay();
-        return Use(GetActiveItem());
+        items[item]++;
     }
 
-    bool GainItem(BaseItem item)
-    {
-        if (items.Count >= capacity) return false;
-        items.Add(item);
-        UpdateSeedDisplay();
-        return true;
+    public bool Have(ItemType item) {
+        return items[item] > 0;
     }
+   
 
+   
+    
 
-    bool BuyItem(BaseItem item, int amount)
+    bool BuyItem(ItemType item,int amount)
     {
-        if (items.Count >= capacity || amount > Yield) return false;
-        items.Add(item);
+        if (amount>Yield) return false;
+        GainItem(item);
         Yield -= amount;
         return true;
     }
 
+  
+
+  
 
 
-    public BaseItem GetActiveItem()
+    public enum ItemType
     {
-        return items[activeItemIndex];
+        Seeds = 0, WaterThingy = 1, Fish = 2, Butterfly = 3
     }
 }
 
