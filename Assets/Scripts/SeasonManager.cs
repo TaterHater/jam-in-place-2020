@@ -26,6 +26,9 @@ public class SeasonManager : MonoBehaviour
         {
             EventManager.TriggerEvent("winter");
         }
+        if(weather.season == Weather.Season.Spring){
+            EventManager.TriggerEvent("spring");
+        }
         DayText.text = "Day " + daysElapsed;
         SeasonText.text = weather.season.ToString();
     }
