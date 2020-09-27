@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6410d1e6987378e4bb3318082587fdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsPerDay: 5
+  secondsPerDay: 60
   DayText: {fileID: 1421955371}
   SeasonText: {fileID: 508168138}
 --- !u!4 &216975670
@@ -948,6 +948,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 32444116452990350}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &439401387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439401389}
+  - component: {fileID: 439401388}
+  m_Layer: 0
+  m_Name: GridManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &439401388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439401387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb64e94df2599a4e82aa73a3c6d30d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x_Start: 7.4
+  z_Start: -7.4
+  numberOfColumns: 5
+  numberOfRows: 10
+  x_Space: 1
+  z_Space: 1
+  y_Space: -1
+  prefab: {fileID: 639751794927838789, guid: f6fe268deca40e44c915de06cb495cf0, type: 3}
+--- !u!4 &439401389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439401387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.482, y: -1.03, z: -7.411}
+  m_LocalScale: {x: 0.40121, y: 0.17674918, z: 0.32509}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454267966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013756737270, guid: 5207efa1684db6c4e885869bceacc874,
@@ -3127,7 +3178,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 86cb62141b74c144e8da3b5402bbff14, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1c959ab7ca49585428d43ce12d221ba0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.843
   m_Pitch: 1
