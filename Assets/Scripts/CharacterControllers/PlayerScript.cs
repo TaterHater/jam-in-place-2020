@@ -6,7 +6,14 @@ using SensorToolkit;
 
 public class PlayerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public float butterflyCount;
+
+    void Start()
+    {
+        butterflyCount = 0f;
+    }
+
 
     public CharacterControls pc;
     public targetmove target;

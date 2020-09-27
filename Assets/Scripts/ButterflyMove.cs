@@ -7,6 +7,7 @@ public class ButterflyMove : MonoBehaviour
 
 
     [SerializeField] public float moveSpeed;
+    public GameObject player;
     private float movementThisFrame;
 
     [SerializeField] List<GameObject> waypoints;
@@ -23,7 +24,8 @@ public class ButterflyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = 0f;        
+        currentTime = 0f;
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -78,5 +80,14 @@ public class ButterflyMove : MonoBehaviour
                 waypointIndex = 0;
             }
         }       
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+
+            Destroy(gameObject);
+        }
     }
 }

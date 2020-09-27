@@ -92,6 +92,8 @@ GameObject:
   - component: {fileID: 5976958492437843959}
   - component: {fileID: 5976958492437843961}
   - component: {fileID: 5976958492437843963}
+  - component: {fileID: -3496324952121555898}
+  - component: {fileID: 3275089810117539074}
   m_Layer: 0
   m_Name: Wilted
   m_TagString: Untagged
@@ -214,3 +216,28 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_DirtyAABB: 1
+--- !u!114 &-3496324952121555898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976958492437843958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313a873220e987044b7478e9c72da492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3275089810117539074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976958492437843958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
