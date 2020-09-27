@@ -105,8 +105,9 @@ public class CropField : InteractableObject
 
 
     public override string ToString()
-    {
-        return crop.state.ToString()+ " " + crop.Age+ " ";
+    {   if(crop != null)
+        return crop.state.ToString()+ " " + crop.Age+ " " ;
+        return "Plant Seeds";
     }
 
 
