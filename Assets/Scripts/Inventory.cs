@@ -39,9 +39,9 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void Use(ItemType item)
+    public void Use(ItemType item, int amount = 1)
     {
-        items[item] = Math.Max(items[item] - 1, 0);
+        items[item] = Math.Max(items[item] - amount, 0);
         UpdateText(item);
     }
     public void GainItem(ItemType item, int amount = 1)
@@ -54,12 +54,14 @@ public class Inventory : MonoBehaviour
     {
         return items[item] > 0;
     }
+    public int GetAmount(ItemType item){
+        return items[item];
+    }
 
 
 
 
-
-    bool BuyItem(ItemType item, int amount)
+   public bool BuyItem(ItemType item, int amount)
     {
         if (amount > Yield) return false;
         GainItem(item);

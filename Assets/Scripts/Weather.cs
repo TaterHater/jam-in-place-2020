@@ -24,6 +24,7 @@ public class Weather
             int s = (int)season;
             s = (s + 1) % 4; // This adds 1 to the season value and then if it's >4 it will return to 0
             season = (Season)s;
+            day = 0;
         }
         day++;
 
