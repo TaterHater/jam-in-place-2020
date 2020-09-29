@@ -88,6 +88,7 @@ public class ButterflyMove : MonoBehaviour
         {
 
             Destroy(gameObject);
+
         }
     }
 }
