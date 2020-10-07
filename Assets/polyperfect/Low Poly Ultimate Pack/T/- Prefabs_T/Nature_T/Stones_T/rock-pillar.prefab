@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33000012649322420}
   - component: {fileID: 23000014087268984}
   - component: {fileID: 64000012274981114}
+  - component: {fileID: 1970366237}
   m_Layer: 0
   m_Name: rock-pillar
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1000010050705002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6384513, y: 1.077732, z: 0.5960218}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,3 +94,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 08fc20b2f1b804872bd47daf67dfef6a, type: 3}
+--- !u!65 &1970366237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010050705002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0451608, y: 6.7658854, z: 1.5628439}
+  m_Center: {x: -0.00000006746817, y: 3.1706834, z: -0.33991262}

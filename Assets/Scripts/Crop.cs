@@ -25,7 +25,8 @@ public  class Crop
     [SerializeField]
     Type cropType;
     [SerializeField]
-    int WaterlessDaysSurvivablity=2;
+    //  int WaterlessDaysSurvivablity=2;
+    int WaterlessDaysSurvivablity = 1;
     int daysWithoutWater = 0;
 
     public enum Type { 

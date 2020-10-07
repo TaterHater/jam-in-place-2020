@@ -7,7 +7,7 @@ public class ButterflyMove : MonoBehaviour
 
 
     [SerializeField] public float moveSpeed;
-    public GameObject player;
+  //  public GameObject player;
     private float movementThisFrame;
 
     [SerializeField] List<GameObject> waypoints;
@@ -25,7 +25,7 @@ public class ButterflyMove : MonoBehaviour
     void Start()
     {
         currentTime = 0f;
-        player = GameObject.FindWithTag("Player");
+   //     player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -64,7 +64,8 @@ public class ButterflyMove : MonoBehaviour
             {
                 targetPosition = waypoints[waypointIndex].transform.position;
                 movementThisFrame = moveSpeed * Time.deltaTime;
-                //    Vector2 enemyTarget = targetPosition - transform.position;           
+                    Vector3 enemyTarget = targetPosition - transform.position;
+                    transform.forward = enemyTarget;
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementThisFrame);
 
                 if (transform.position == targetPosition)

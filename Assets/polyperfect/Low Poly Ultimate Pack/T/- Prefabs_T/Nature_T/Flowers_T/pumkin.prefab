@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000012972282342}
   - component: {fileID: 33000011355490778}
   - component: {fileID: 23000013485168180}
-  - component: {fileID: 135000010319525794}
+  - component: {fileID: 5034066403589513910}
   m_Layer: 0
   m_Name: pumkin
   m_TagString: Untagged
@@ -79,8 +79,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &135000010319525794
-SphereCollider:
+--- !u!65 &5034066403589513910
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,5 +90,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3287567
-  m_Center: {x: 0, y: 0.325123, z: -0.000000014901161}
+  m_Size: {x: 0.6451714, y: 0.81079364, z: 0.6451715}
+  m_Center: {x: 0, y: 0.40176314, z: 0.000000059604645}

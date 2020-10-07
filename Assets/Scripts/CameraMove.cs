@@ -12,18 +12,20 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         var playerPos = playerObject.transform.position;
-        //farm area
-        if(playerPos.z > -14 && playerPos.x > -10 ){
+        // Farm area
+        if(playerPos.z > -16 && playerPos.x > -8 ){
             mainCamera.transform.position = CameraLocations[0];
         } 
-        //Pond Area
-        else if(playerPos.z > -14 && playerPos.x < -10){
+        // Pond Area
+        else if(playerPos.z > -16 && playerPos.x < -8){
             mainCamera.transform.position = CameraLocations[1];
         }
-        //forest Area
-        else if(playerPos.z < -14 && playerPos.x >= -5){
+        // Forest Area
+        else if(playerPos.z < -16 && playerPos.x >= -8){
             mainCamera.transform.position = CameraLocations[2];
         }
+
+        // Forest Spirit Area
         else{
              mainCamera.transform.position = CameraLocations[3];
         }

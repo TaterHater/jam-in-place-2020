@@ -1072,7 +1072,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715103906888602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4891777387128848}
@@ -1112,10 +1112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
-  directionChange: {x: 1, y: 0, z: 0}
-  finalDestination: {x: -4.12, y: -0.46, z: 14.37}
-  timeBetweenDirectionChange: 3
-  currentTime: 0
+  directionChange: {x: 0, y: 0, z: 0}
+  finalDestination: {x: 9, y: -0.46, z: 16}
+  timeInChangedDirection: 0
+  directionChangeFrequency: 0
+  directionChangeFrequencyCounter: 0
+  targetAcquired: 0
+  timeInNewDirection: 0
+  timeCounter: 0
 --- !u!65 &3910233713193242146
 BoxCollider:
   m_ObjectHideFlags: 0

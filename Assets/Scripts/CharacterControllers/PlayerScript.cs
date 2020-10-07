@@ -43,5 +43,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        Debug.Log(target);
     }
 }

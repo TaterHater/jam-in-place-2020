@@ -20,17 +20,18 @@ public class PestMove : MonoBehaviour
     public float timeCounter;
 
 
-    // Randomly change directions
+    // Uses Vector3.MoveTowards(finalDirection) for a certain amount of time (directionChangeFrequency
 
     // Start is called before the first frame update
     void Start()
     {
         targetAcquired = true;
         directionChangeFrequencyCounter = 0f;
-        directionChangeFrequency = Random.Range(4f, 5f);
+        directionChangeFrequency = 3f;
         timeCounter = 0f;
-        timeInChangedDirection = Random.Range(1f, 2f);
-        directionChange = transform.position + new Vector3(Random.Range(-1f, 2f), 0f, 0f); 
+        timeInChangedDirection = 2f;
+        //  directionChange = transform.position + new Vector3(Random.Range(-1f, 2f), 0f, 0f); 
+        directionChange = finalDestination + new Vector3(Random.Range(-10f, 10f), 0f, 0f);
     }
 
     // Update is called once per frame
@@ -55,9 +56,9 @@ public class PestMove : MonoBehaviour
                 targetAcquired = true;
                 timeCounter = 0f;
                 directionChangeFrequencyCounter = 0f;
-                timeInChangedDirection = Random.Range(1f, 2f);
-                directionChangeFrequency = Random.Range(4f, 5f);
-                directionChange = transform.position + new Vector3(Random.Range(-1f, 2f), 0f, 0f);
+                timeInChangedDirection = 2f;
+                directionChangeFrequency = 3f;
+                directionChange = finalDestination + new Vector3(Random.Range(-10f, 10f), 0f, 0f);
             }                   
            
         } 
