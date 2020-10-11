@@ -7,7 +7,8 @@ public class ButterflyMove : MonoBehaviour
 
 
     [SerializeField] public float moveSpeed;
-  //  public GameObject player;
+ //   public GameObject god;
+    public godController gc;
     private float movementThisFrame;
 
     [SerializeField] List<GameObject> waypoints;
@@ -25,7 +26,8 @@ public class ButterflyMove : MonoBehaviour
     void Start()
     {
         currentTime = 0f;
-   //     player = GameObject.FindWithTag("Player");
+      //  god = GameObject.FindWithTag("God");
+       // gc = god.GetComponent<godController>();
     }
 
     // Update is called once per frame
@@ -89,6 +91,8 @@ public class ButterflyMove : MonoBehaviour
         {
 
             Destroy(gameObject);
+            gc.butterflyCount = gc.butterflyCount + 1;
+            
 
         }
     }

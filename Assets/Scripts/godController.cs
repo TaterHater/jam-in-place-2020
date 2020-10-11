@@ -16,37 +16,61 @@ public class godController : InteractableObject
     public int fishDemanded; //0
     public int cropDemanded; //1 
     public int bugsDemanded; //2
+    public int butterflyCount;   
 
     public Vector3 StartPos;
     public Vector3 EndPos;
+    public bool arrived;
     public float speed;
+    public float step;
     public GameObject god;
     public GameObject donationArea;
     int[] inventory;
+
+
     void Start()
     {
-        EventManager.StartListening("winter", Activate);
-        EventManager.StartListening("spring", Deactivate);
+     //   EventManager.StartListening("winter", Activate);
+     //   EventManager.StartListening("spring", Deactivate);
         inventory = new int[3];
-         this.gameObject.SetActive(false);
+      //   this.gameObject.SetActive(false);
          HeaderText.text = "Gather "+cropDemanded+" crops, "+
-         fishDemanded +" fish";
+         fishDemanded +" fish";        
     }
 
-    void Activate()
-    {
-        this.gameObject.SetActive(true);
-        float step = speed * Time.deltaTime;
-        god.transform.position = Vector3.MoveTowards(god.transform.position, EndPos, step);
-    }
-    void Deactivate()
+    private void Update()
     {
         float step = speed * Time.deltaTime;
-        god.transform.position = Vector3.MoveTowards(god.transform.position, StartPos, step);
-        if(god.transform.position == StartPos){
-             this.gameObject.SetActive(false);
+
+        if (arrived == true)
+        {
+            god.transform.position = Vector3.MoveTowards(god.transform.position, EndPos, step);
+            Debug.Log("Bababooey");
+        }
+
+        else if (arrived == false)
+        {
+            god.transform.position = Vector3.MoveTowards(god.transform.position, StartPos, step);
+            Debug.Log("Bazinga");
         }
     }
+
+    /*  void Activate()
+      {
+       //   this.gameObject.SetActive(true);
+          float step = speed * Time.deltaTime;
+          god.transform.position = Vector3.MoveTowards(god.transform.position, EndPos, step);
+      }
+      */
+
+    /* void Deactivate()
+     {
+         float step = speed * Time.deltaTime;
+         god.transform.position = Vector3.MoveTowards(god.transform.position, StartPos, step);
+      //   if(god.transform.position == StartPos){
+         //     this.gameObject.SetActive(false);
+       //  }
+     } */
     public override void Interact(PlayerScript ps)
     {
         //TODO - actions handled by the alter object
@@ -54,12 +78,13 @@ public class godController : InteractableObject
         inventory[1] = ps.inventory.Yield;
         inventory[2] = ps.inventory.GetAmount(Inventory.ItemType.Butterfly);
 
-        if (inventory[0] >= fishDemanded && inventory[1] >= cropDemanded && inventory[2] >= bugsDemanded)
+        if (inventory[0] >= fishDemanded && inventory[1] >= cropDemanded && butterflyCount >= bugsDemanded)
         {
             //god takes everything needed
             ps.inventory.BuyItem(Inventory.ItemType.Seeds, cropDemanded);
             ps.inventory.Use(Inventory.ItemType.Fish, fishDemanded);
             ps.inventory.Use(Inventory.ItemType.Butterfly, bugsDemanded);
+            butterflyCount = 0;
         }
         else
         {
@@ -67,6 +92,23 @@ public class godController : InteractableObject
             message.text = "You do not have enough resources";
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            arrived = true;
+           
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            arrived = false;           
+        }
+    } 
     void OnMouseEnter()
     {
         message.text = messageText;

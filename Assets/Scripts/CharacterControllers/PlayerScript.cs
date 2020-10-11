@@ -5,14 +5,7 @@ using SensorToolkit.Example;
 using SensorToolkit;
 
 public class PlayerScript : MonoBehaviour
-{
-
-    public float butterflyCount;
-
-    void Start()
-    {
-        butterflyCount = 0f;
-    }
+{   
 
 
     public CharacterControls pc;
